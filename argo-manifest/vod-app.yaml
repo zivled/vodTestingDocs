@@ -1,0 +1,52 @@
+# this is a static file the origin is in: zivled/argo-manifests
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/rnd-hub/VOD.git'
+    path: helm/vod
+    targetRevision: master
+    helm:
+      parameters:
+        - name: global.private_registry
+          value: 'artifactory.rnd-hub.com:5000/dd_vod/'
+        - name: global.image_pull_secret.name
+          value: artifactory-dd-vod
+        - name: global.image_pull_secret.enabled
+          value: 'true'
+        - name: global.cluster_id
+          value: balmas1
+        - name: global.storage.pvc.storage_class
+          value: nfs-client
+        - name: global.base_url_host
+          value: 10.40.134.7
+        - name: signalling.webrtc_bitrate_kbps
+          value: '1500'
+        - name: recording_curator.recording_retention_hours
+          value: '360'
+        - name: coturn.ports.min
+          value: '12000'
+        - name: coturn.ports.max
+          value: '12200'
+        - name: online_sensors_detection.enabled
+          value: 'true'
+      values: |
+        coturn: 
+          stun: 
+            - urls: 
+              - turn:10.40.134.7:3478
+              - stun:10.40.134.7:3478
+
+              # ignore
+              username: rms
+
+              # ignore
+              credential: rms
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: default
+  syncPolicy: {}
