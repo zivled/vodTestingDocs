@@ -20,7 +20,7 @@ global:
   # 
   storage:
     # empty for default storage class, fill for non-default storage class, "-" for not using pre made storage class
-      storage_class: "nfs-client"
+    storage_class: "nfs-client"
 
     pvc:
       # if storage_class: "-", fill this nfs keys
