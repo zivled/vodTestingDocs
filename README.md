@@ -137,7 +137,12 @@ sudo mkdir /var
     helm install ingress-nginx ingress-nginx -f projects/vod/nginxValues.yaml
     ```
 
-10. Create all 4 labels for all worker nodes: backend=true, frontend=true, api=true, worker=true on all worker nodes 
+10. Create all 4 labels for all worker nodes: backend=true, frontend=true, api=true, worker=true on all worker nodes:
+    ```bash
+    kubectl label <FE NODES> frontend=true
+    kubectl label <BE NODES> backend=true
+    kubectl label <WORKER NODES> worker=true
+    ```
 
 11. Create secret if not already exist – artifactory-dd-vod . 
 
