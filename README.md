@@ -2,16 +2,23 @@
 vod testing and docs
 
 ## deploying vod from scratch with argocd
+
 repo: https://github.com/zivled/vodTestingDocs
+
 ### prerequisite:
+
 #### deployer:
+
 install packages: curl, docker, git, ansible, kubectl, rke, helm.
 
 #### cluster:
+
 There is no minimum requirement for number of instances,
 you can work with one node.
 In this case we have 2 instance cluster (ubuntu 18.04) in wild-raanan:
+
 1. VOD-MASTER. ip: 10.40.134.6 (master)
+
 2. VOD-W1. ip:10.40.134.7 (worker)
 
 it is recommended to enlarge var directory (to prevent future overload of logs) :
@@ -150,5 +157,35 @@ test if ok by entering the rms-control and from there accesing and testing each 
 
 example: http://10.40.134.7/rms/rms-control/index.html 
 
-<!-- add docs for testing the vod - maybe the battlefield video? -->
+
+### now that vod is deployed you want to check if its performing ok.
+
+### first lets know the..
+
+## functonality of the system
+
+Cluster versions page: show all componenets of the system with links to get to their ui and their versions.
+
+<!-- i dont have it in cluster versions -->
+<!-- auth: testing to see if api is ok. -->
+
+rms ui: here you can watch your channels. you can choose a channel in the hamburger menu.
+
+sds: the catalog of channels. here you can create new or edit existing channels.
+enter: sensor id, ip, port, teken1.
+
+note- the same functionality also exists in the simulator inside the channels simulator tab and i use it instead.
+
+simulator: there are 2 tables.
+
+the first one is for recordings. you can initiate a new recording or start streaming a new recording (and after that play the stream inside a channel)
+
+the second one is for channels catalog (just like the sds). 
+
+swagger: explains how to work with the relavant api.
+
+## how to test vod?
+
+- make sure all pages are up.
+- in the simulator page click on "simulate from recording" (video roll icon) then choose the battlefield recording in the newly open section. leave ip and port as is.
 
