@@ -80,7 +80,11 @@ sudo mkdir /var
     ```
 
     b. Create “publicdata” and all other relevant directories that are needed with ownership nobody and 777. example:
-        
+
+    <!-- nfs_mount ואת  rms-balmas1 לבדוק למה צריך את  -->
+    <!-- הם ריקים... לא רואה שמשתמשים בתקיות האלה -->
+    <!-- nfs_mount_tmp משתמשים רק ב  -->
+    <!-- אף אחד מהתקיות האלה לא קיים ב7 בסוף שזה ה worker -->
     ```bash
     sudo mkdir -r /mnt/publicdata/rms-balmas1
     mkdir /tmp/nfs_mount_tmp
@@ -88,7 +92,9 @@ sudo mkdir /var
     sudo chown -R nobody:nogroup /mnt/publicdata/
     sudo chmod 777 /mnt/publicdata
     ```
-
+    
+    <!-- גם זה מיותר לדעתי -->
+    <!-- in order to use nfs for dynamic provisioning you only need an export and the nfs subdir helm... -->
     c. Edit /etc/exports only on nfs server:
     ```bash
     10.40.134.6:/mnt/publicdata 10.40.134.0/24(rw,sync,no_subtree_check)
