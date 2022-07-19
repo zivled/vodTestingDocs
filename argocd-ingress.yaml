@@ -12,7 +12,7 @@ spec:
   - host: argocd.dd-dev.wwest.local
     http:
       paths:
-      - path: /argo-cd
+      - path: /
         pathType: Prefix
         backend:
           service: 
